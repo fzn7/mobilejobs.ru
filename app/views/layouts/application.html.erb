@@ -1,152 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="description" content="<%= t(".meta_description") %>" />
-  <meta name="keywords" content="<%= t(".meta_keywords") %>" />
+  <meta charset="utf-8"/>
+  <meta name="description" content="<%= t(".meta_description") %>"/>
+  <meta name="keywords" content="<%= t(".meta_keywords") %>"/>
   <title><%= yield(:meta_title) %></title>
   <%= stylesheet_link_tag "application" %>
   <%= csrf_meta_tags %>
   <%= auto_discovery_link_tag :rss,
                               "http://feeds.feedburner.com/rubyjobsru",
-                              { :title => t("layouts.application.meta_title") } %>
+                              {:title => t("layouts.application.meta_title")} %>
   <%= favicon_link_tag %>
 </head>
 <body>
-  <div class="container">
-    <% flash.each do |key, value| %>
-    <div class="alert <%= key %> fade in">
-      <a class="close" href="#" class="close" data-dismiss="alert">×</a>
-      <p><%= value %></p>
-    </div>
-    <% end %>
-    <div class="row content-section">
-      <div class="span2 sidebar">
-        <div class="logo">
-          <%= link_to_if !current_page?(root_url),
-                         image_tag("rubyjobs-logo.png",
-                                   :size => "76x67",
-                                   :alt => t(".meta_title")),
-                         root_url %>
-        </div>
-        <div class="tips">
-          <%= yield(:sidebar) %>
-        </div>
-        <div class="subscriptions">
-          <h5><%= t("layouts.application.subscriptions") %></h5>
-          <p>
-            <a href="https://www.twitter.com/rubyjobsru">
-              <span class="label label-info">Twitter</span>
-            </a>
-            <a href="http://feeds.feedburner.com/rubyjobsru">
-              <span class="label label-warning">RSS</span>
-            </a>
-          </p>
-        </div>
+<div class="container">
+  <% flash.each do |key, value| %>
+      <div class="alert <%= key %> fade in">
+        <a class="close" href="#" class="close" data-dismiss="alert">×</a>
+
+        <p><%= value %></p>
       </div>
-      <div class="span8 offset2">
-        <%= yield %>
+  <% end %>
+  <div class="row content-section">
+    <div class="span2 sidebar">
+      <div class="logo">
+        <%= link_to_if !current_page?(root_url),
+                       image_tag("rubyjobs-logo.png",
+                                 :size => "76x67",
+                                 :alt => t(".meta_title")),
+                       root_url %>
       </div>
-    </div>
-    <% if current_page?(root_url) %>
-    <hr />
-    <div class="row content-section">
-      <div class="span2 sidebar">
-        <h1>Интересные события и проекты</h1>
+      <div class="tips">
+        <%= yield(:sidebar) %>
       </div>
-      <div class="span8 offset2">
-        <div class="row">
-          <div class="span4">
-            <div class="event-logo">
-              <%= link_to image_tag('gohiring200x48.png', :size => '200x48'),
-                          'http://www.gohiring.com/?utm_source=rubyjobs.ru' %>
-            </div>
-            <p>
-              <strong>GoHiring Talent Marketing API</strong>&nbsp;&mdash; это мощный инструмент, который безпроблемно интегрируется с любой E-Recruiting системой.
-            </p>
-            <p><%= link_to 'http://www.gohiring.com', 'http://www.gohiring.com/?utm_source=rubyjobs.ru' %></p>
-          </div>
-          <div class="span4">
-            <div class="event-logo">
-              <%= link_to image_tag("rubyflow135x80.png", :size => "135x80"),
-                          "http://rubyflow.ru/?utm_source=rubyjobs.ru" %>
-            </div>
-            <p>Коллективный блог сообщества разработчиков.</p>
-            <p>
-              Более 1 400 статей на тему Ruby, Rails, Sinatra и других
-              известных и не очень библиотек. Советы, обзоры и примеры кода.
-            </p>
-            <p>
-              Формат коллективного блога позволяет каждому опубликовать
-              статью. Без регистрации :)
-            </p>
-            <p><%= link_to 'http://rubyflow.ru', 'http://rubyflow.ru/?utm_source=rubyjobs.ru' %></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span4">
-            <div class="event-logo">
-              <%= link_to image_tag('https://s3.eu-central-1.amazonaws.com/rubyflow-assets/company-mood.png', :height => 65, :width => 200),
-                          'https://www.company-mood.com/?utm_source=rubyjobs.ru' %>
-            </div>
-            <p>
-              CompanyMood - это онлайн-сервис, еженедельно измеряющий настроение сотрудников вашей компании.
-            </p>
-            <p>
-              Он помогает вам принимать решения относительно HR-мероприятий, основываясь на информации полученной от самих сотрудников.
-            </p>
-            <p><%= link_to 'https://www.company-mood.com', 'https://www.company-mood.com/?utm_source=rubyjobs.ru' %></p>
-          </div>
-          <div class="span4">
-            <div class="event-logo">
-              <%= link_to image_tag('https://s3.eu-central-1.amazonaws.com/rubyjobs-assets/railsclub160x80.png', :width => 160, :height => 80),
-                          'http://railsclub.ru/?utm_source=rubyjobs.ru' %>
-            </div>
-            <p>
-              26 сентября 2015 в Москве пройдет RailsClub. Конференция RailsClub — это отличное место, где можно получить новые знания, пообщаться с коллегами и звездами Ruby, узнать из первых рук, как будут развиваться Ruby и Rails, прокачать свои навыки и вдохновиться на следующий год.
-            </p>
-            <p><%= link_to 'http://railsclub.ru', 'http://railsclub.ru/?utm_source=rubyjobs.ru' %></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <footer class="row footer">
-      <div class="span2">
+      <div class="subscriptions">
+        <h5><%= t("layouts.application.subscriptions") %></h5>
+
         <p>
-          &copy;&nbsp;2008&mdash;2015<br />
-          <%= link_to "Alex Sulim", "http://sul.im" %>
+          <a href="https://www.twitter.com/rubyjobsru">
+            <span class="label label-info">Twitter</span>
+          </a>
+          <a href="http://feeds.feedburner.com/rubyjobsru">
+            <span class="label label-warning">RSS</span>
+          </a>
         </p>
       </div>
-      <div class="span4 offset2">
-        <%= link_to image_tag('digitalocean-badge-gray.png', :size => '140x39'), 'http://www.digitalocean.com?utm_source=rubyjobs.ru' %>
-      </div>
-      <nav class="span4">
-        <ul class="pull-right">
-          <li><%= link_to t(".pages.about"), page_url(:about) %></li>
-          <li><%= link_to t(".pages.terms"), page_url(:terms) %></li>
-          <li><%= link_to t(".pages.contacts"), page_url(:contacts) %></li>
-        </ul>
-      </nav>
-    </footer>
+    </div>
+    <div class="span8 offset2">
+      <%= yield %>
+    </div>
   </div>
-
-  <%= javascript_include_tag "application" %>
-  <%= yield(:js) %>
-  <% if Rails.env.production? %>
-  <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-391915-13']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-  </script>
+  <% if current_page?(root_url) %>
+      <hr/>
+      <div class="row content-section">
+        <div class="span2 sidebar">
+          <h1>Лента бирж фриланса</h1>
+        </div>
+        <div class="span8 offset2">
+          <%= render "entries/index", entries: Entry.all %>
+        </div>
+      </div>
   <% end %>
+  <footer class="row footer">
+    <div class="span2">
+      <p>
+        &copy;&nbsp;2008&mdash;2015<br/>
+        <%= link_to "Alex Sulim", "http://sul.im" %>
+      </p>
+    </div>
+    <div class="span4 offset2">
+      <%= link_to image_tag('digitalocean-badge-gray.png', :size => '140x39'), 'http://www.digitalocean.com?utm_source=rubyjobs.ru' %>
+    </div>
+    <nav class="span4">
+      <ul class="pull-right">
+        <li><%= link_to t(".pages.about"), page_url(:about) %></li>
+        <li><%= link_to t(".pages.terms"), page_url(:terms) %></li>
+        <li><%= link_to t(".pages.contacts"), page_url(:contacts) %></li>
+      </ul>
+    </nav>
+  </footer>
+</div>
+
+<%= javascript_include_tag "application" %>
+<%= yield(:js) %>
+<% if Rails.env.production? %>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-391915-13']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+<% end %>
 </body>
 </html>

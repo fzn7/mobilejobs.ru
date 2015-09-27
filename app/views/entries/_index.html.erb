@@ -1,0 +1,12 @@
+<% entries.each do |entry| %>
+    <div class="row">
+      <article class="span8">
+        <h3><%= link_to entry.title, entry.url %></h3>
+        <h3 class="muted company">
+          <%= entry_feed_tag(entry.feed) %><br/>
+          <small><%== t('.published_at', published_at: l(entry.published_at)) %></small>
+        </h3>
+        <%= entry.description_html.html_safe %>
+      </article>
+    </div>
+<% end %>

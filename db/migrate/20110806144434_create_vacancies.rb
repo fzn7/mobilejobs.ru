@@ -4,7 +4,7 @@ class CreateVacancies < ActiveRecord::Migration
       t.string    :title
       t.text      :description
       t.string    :company
-      t.string    :url
+      t.text      :url
       t.string    :name
       t.string    :email
       t.string    :phone
