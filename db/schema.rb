@@ -11,12 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20111202164224) do
+ActiveRecord::Schema.define(version: 20150927163357) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "entries", force: :cascade do |t|
+    t.integer  "feed_id"
+    t.string   "title"
+    t.string   "link"
+    t.string   "description"
+    t.datetime "published_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
-  create_table "vacancies", force: true do |t|
+  add_index "entries", ["feed_id"], name: "index_entries_on_feed_id"
+
+  create_table "feeds", force: :cascade do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "vacancies", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "company"
@@ -35,10 +52,10 @@ ActiveRecord::Schema.define(version: 20111202164224) do
     t.string   "location"
   end
 
-  add_index "vacancies", ["admin_token"], name: "index_vacancies_on_admin_token", using: :btree
-  add_index "vacancies", ["approved_at"], name: "index_vacancies_on_approved_at", using: :btree
-  add_index "vacancies", ["created_at"], name: "index_vacancies_on_created_at", using: :btree
-  add_index "vacancies", ["expire_at"], name: "index_vacancies_on_expire_at", using: :btree
-  add_index "vacancies", ["owner_token"], name: "index_vacancies_on_owner_token", using: :btree
+  add_index "vacancies", ["admin_token"], name: "index_vacancies_on_admin_token"
+  add_index "vacancies", ["approved_at"], name: "index_vacancies_on_approved_at"
+  add_index "vacancies", ["created_at"], name: "index_vacancies_on_created_at"
+  add_index "vacancies", ["expire_at"], name: "index_vacancies_on_expire_at"
+  add_index "vacancies", ["owner_token"], name: "index_vacancies_on_owner_token"
 
 end
