@@ -1,9 +1,13 @@
 class EntriesController < InheritedResources::Base
 
-  private
+  def index
+    @entries =   Entry.all.page(params[:page])
+    respond_with(@entries)
+  end
 
-    def entry_params
-      params.require(:entry).permit()
-    end
+  private
+  def entry_params
+    params.require(:entry).permit()
+  end
 end
 

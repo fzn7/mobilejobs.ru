@@ -57,7 +57,7 @@
           <h1>Лента бирж фриланса</h1>
         </div>
         <div class="span8 offset2">
-          <%= render "entries/index", entries: Entry.all %>
+          <%= render "entries/index", entries: Entry.all.page(params[:page]) %>
         </div>
       </div>
   <% end %>
