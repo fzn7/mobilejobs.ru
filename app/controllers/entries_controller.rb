@@ -1,7 +1,7 @@
 class EntriesController < InheritedResources::Base
 
   def index
-    @entries =   Entry.all.page(params[:page])
+    @entries =   Entry.all_sorted.page(params[:page])
     respond_with(@entries)
   end
 
