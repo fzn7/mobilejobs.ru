@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   resources :vacancies do
     get 'page/:page', :action => :index, :on => :collection
@@ -7,4 +9,6 @@ Rails.application.routes.draw do
   resources :pages, :only => :show
   root :to => 'vacancies#index'
   resources :entries, :only => [:show, :index]
+
+  mount Sidekiq::Web, at: '/sidekiq'
 end

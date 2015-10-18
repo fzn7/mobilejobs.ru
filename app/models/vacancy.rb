@@ -36,10 +36,40 @@ class Vacancy < ActiveRecord::Base
     self.expire_at.past?
   end
 
+  def self.update_from_feed(feed)
+    feed_data = Feedjira::Feed.fetch_and_parse(feed.url)
+    eval "add_vacancies_#{feed.title} feed_data.entries, feed"
+  end
+
   protected
 
   # Take the first three parts of text
   def extract_excerpt(text, divider = "\r\n\r\n")
     text.lines(divider).to_a.each(&:strip!).reject(&:blank?).take(3).join(divider)
+  end
+
+  private
+  def self.add_vacancies_MoiKrug(entries, feed)
+    entries.each do |entry|
+      break if exists? :entry_id => "#{feed.id} #{entry.id}"
+
+      skip_callback :create, :save
+
+      v = Vacancy.new(
+                      :entry_id => "#{feed.id} #{entry.id}",
+                      :title => entry.title.sanitize,
+                      :description => entry.summary,
+                      :company =>  entry.author,
+                      #:url => entry.url,
+                      #:name => '',
+                      :location => 'Undefined',
+                      :expire_at => entry.published + 2.weeks,
+                      :approved_at => entry.published,
+                      :created_at => entry.published,
+                      :admin_token => TokenGenerator.generate_token,
+                      :excerpt_html => HtmlGenerator.render(entry.summary),
+                      )
+      v.save(validate: false)
+    end
   end
 end

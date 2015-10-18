@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927163357) do
+ActiveRecord::Schema.define(version: 20151004175225) do
 
   create_table "entries", force: :cascade do |t|
     t.string   "entry_id"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20150927163357) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "data_type"
+    t.string   "name"
   end
 
   create_table "vacancies", force: :cascade do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150927163357) do
     t.text     "excerpt_html"
     t.text     "description_html"
     t.string   "location"
+    t.string   "entry_id"
   end
 
   add_index "vacancies", ["admin_token"], name: "index_vacancies_on_admin_token"

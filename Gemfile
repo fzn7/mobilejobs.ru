@@ -17,6 +17,9 @@ gem 'sqlite3', '1.3.11.pr159'
 gem 'nokogiri', "=1.6.7.rc2"
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'feedjira'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 #Active admin gems ------>
 gem 'activeadmin', github: 'activeadmin'
