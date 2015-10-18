@@ -13,7 +13,7 @@ gem 'redcarpet'
 gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'therubyracer', :platform => :ruby
 gem 'uglifier'
-gem 'sqlite3', '1.3.11.pr159'
+gem 'sqlite3'
 gem 'nokogiri', "=1.6.7.rc2"
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'feedjira'
@@ -39,7 +39,8 @@ end
 
 group :development do
   gem 'letter_opener'
-  gem 'mina', require: false
+  gem 'capistrano', require: false
+  gem 'capistrano-rails'
 end
 
 group :test do

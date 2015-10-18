@@ -67,6 +67,16 @@ GEM
       json (~> 1.7, >= 1.7.7)
     builder (3.2.2)
     cancan (1.6.10)
+    capistrano (3.4.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.1.5)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
     capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -97,6 +107,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    colorize (0.7.7)
     connection_pool (2.2.0)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -166,18 +177,17 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.2)
-    mina (0.3.7)
-      open4 (~> 1.3.4)
-      rake
     mini_portile (0.7.0.rc4)
     minitest (5.8.1)
     multipart-post (2.0.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.0.1)
     newrelic_rpm (3.13.1.300)
     nokogiri (1.6.7.rc2)
       mini_portile (~> 0.7.0.rc2)
     nokogiri (1.6.7.rc2-x64-mingw32)
       mini_portile (~> 0.7.0.rc2)
-    open4 (1.3.4)
     orm_adapter (0.5.0)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
@@ -271,7 +281,12 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sqlite3 (1.3.11.pr159-x64-mingw32)
+    sqlite3 (1.3.11)
+    sqlite3 (1.3.11-x64-mingw32)
+    sshkit (1.7.1)
+      colorize (>= 0.7.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     temple (0.7.6)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
@@ -301,6 +316,8 @@ DEPENDENCIES
   activeadmin!
   bugsnag
   cancan
+  capistrano
+  capistrano-rails
   capybara
   devise
   draper
@@ -311,7 +328,6 @@ DEPENDENCIES
   jquery-rails
   kaminari
   letter_opener
-  mina
   newrelic_rpm
   nokogiri (= 1.6.7.rc2)
   pundit
@@ -323,7 +339,7 @@ DEPENDENCIES
   sinatra
   slim
   sprockets-rails
-  sqlite3 (= 1.3.11.pr159)
+  sqlite3
   therubyracer
   tzinfo-data
   uglifier
