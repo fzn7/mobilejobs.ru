@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'bugsnag'
 gem 'figaro'
-gem 'foreman', require: false
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'responders', '~> 2.0'
@@ -38,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'foreman', require: false
   gem 'letter_opener'
   gem 'capistrano', require: false
   gem 'capistrano-rails'
