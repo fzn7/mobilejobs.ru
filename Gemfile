@@ -19,6 +19,7 @@ gem 'feedjira'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'whenever'
 
 #Active admin gems ------>
 gem 'activeadmin', github: 'activeadmin'
@@ -40,7 +41,10 @@ group :development do
   gem 'foreman', require: false
   gem 'letter_opener'
   gem 'capistrano', require: false
+  gem 'capistrano-ext'
   gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-passenger'
 end
 
 group :test do
