@@ -16,3 +16,5 @@ config/deploy.rb
 
 # Ignore application configuration
 /config/application.yml
+
+/config/deploy/shared
