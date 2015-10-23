@@ -20,5 +20,5 @@
 set :output, "~/mobilejobs.ru.cron.log"
 
 every 5.minutes do
-  rake "rss:update_data"
+  rake "update_data"
 end
