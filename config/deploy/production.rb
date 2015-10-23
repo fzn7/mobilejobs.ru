@@ -58,10 +58,10 @@ role :app, %w{www@dev.adumentum.com}
 #   }
 
 # files we want symlinking to specific entries in shared.
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/application.yml}
 
 # dirs we want symlinking to shared
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{bin log db tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # which config files should be copied by deploy:setup_config
 # see documentation in lib/capistrano/tasks/setup_config.cap
@@ -69,6 +69,7 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 set(:config_files, %w(
   ru.mobilejobs.conf
   database.example.yml
+  application.example.yml
 ))
 
 # which config files should be made executable after copying
