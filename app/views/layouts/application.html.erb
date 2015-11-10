@@ -8,7 +8,7 @@
   <%= stylesheet_link_tag "application" %>
   <%= csrf_meta_tags %>
   <%= auto_discovery_link_tag :rss,
-                              "http://feeds.feedburner.com/rubyjobsru",
+                              "http://feeds.feedburner.com/mobilejobsru",
                               {:title => t("layouts.application.meta_title")} %>
   <%= favicon_link_tag %>
 </head>
@@ -25,8 +25,7 @@
     <div class="span2 sidebar">
       <div class="logo">
         <%= link_to_if !current_page?(root_url),
-                       image_tag("rubyjobs-logo.png",
-                                 :size => "76x67",
+                       image_tag("mobile_jobs_logo.png",
                                  :alt => t(".meta_title")),
                        root_url %>
       </div>
@@ -65,7 +64,7 @@
     <div class="span2">
       <p>
         &copy;&nbsp;2008&mdash;2015<br/>
-        <%= link_to "Alex Sulim", "http://sul.im" %>
+        <%= mail_to "ilyaplotnikoff@gmail.com", "Ilya Plotnikov" %>
       </p>
     </div>
     <nav class="span4">
