@@ -9,7 +9,6 @@ gem 'responders', '~> 2.0'
 #gem 'puma', require: false
 gem 'rails'
 gem 'redcarpet'
-gem 'sprockets-rails', require: 'sprockets/railtie'
 gem 'therubyracer', :platform => :ruby
 gem 'uglifier'
 gem 'sqlite3'
@@ -21,12 +20,8 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'whenever'
 
-#Active admin gems ------>
-gem 'activeadmin', github: 'activeadmin'
-gem 'devise'
-gem 'cancan' # or cancancan
-gem 'draper'
-gem 'pundit'
+#Rails admin gems ------>
+gem 'rails_admin', github: 'sferik/rails_admin'
 #<------------------------
 
 group :production do
