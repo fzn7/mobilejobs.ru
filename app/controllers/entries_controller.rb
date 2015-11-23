@@ -1,4 +1,4 @@
-class EntriesController < InheritedResources::Base
+class EntriesController < ActionController::Base
 
   def index
     @entries =   Entry.all_sorted.page(params[:page])
