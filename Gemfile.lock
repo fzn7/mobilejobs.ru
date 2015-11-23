@@ -1,20 +1,21 @@
 GIT
-  remote: git://github.com/activeadmin/activeadmin.git
-  revision: b44b4f4896ef78b50c35c82a343356d68b937cde
+  remote: git://github.com/sferik/rails_admin.git
+  revision: 54b6008e038cbcc7db6163431c0c157816641c53
   specs:
-    activeadmin (1.0.0.pre2)
-      arbre (~> 1.0, >= 1.0.2)
-      bourbon
-      coffee-rails
-      formtastic (~> 3.1)
-      formtastic_i18n
-      inherited_resources (~> 1.6)
-      jquery-rails
-      jquery-ui-rails
-      kaminari (~> 0.15)
-      rails (>= 3.2, < 5.0)
-      ransack (~> 1.3)
-      sass-rails
+    rails_admin (0.7.0)
+      builder (~> 3.1)
+      coffee-rails (~> 4.0)
+      font-awesome-rails (>= 3.0, < 5)
+      haml (~> 4.0)
+      jquery-rails (>= 3.0, < 5)
+      jquery-ui-rails (~> 5.0)
+      kaminari (~> 0.14)
+      nested_form (~> 0.3)
+      rack-pjax (~> 0.7)
+      rails (~> 4.0)
+      remotipart (~> 1.0)
+      safe_yaml (~> 1.0)
+      sass-rails (>= 4.0, < 6)
 
 GEM
   remote: https://rubygems.org/
@@ -55,18 +56,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
-    arbre (1.0.3)
-      activesupport (>= 3.0.0)
     arel (6.0.3)
-    bcrypt (3.1.10)
-    bcrypt (3.1.10-x64-mingw32)
-    bourbon (4.2.5)
-      sass (~> 3.4)
-      thor (~> 0.19)
     bugsnag (2.8.12)
       json (~> 1.7, >= 1.7.7)
     builder (3.2.2)
-    cancan (1.6.10)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -114,22 +107,10 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     colorize (0.7.7)
     connection_pool (2.2.0)
-    devise (3.5.2)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      responders
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    draper (2.1.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -148,23 +129,16 @@ GEM
       sax-machine (~> 1.0)
     figaro (1.1.1)
       thor (~> 0.14)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     foreman (0.78.0)
       thor (~> 0.19.1)
-    formtastic (3.1.3)
-      actionpack (>= 3.2.13)
-    formtastic_i18n (0.4.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    has_scope (0.6.0)
-      actionpack (>= 3.2, < 5)
-      activesupport (>= 3.2, < 5)
+    haml (4.0.7)
+      tilt
     hitimes (1.2.3)
     i18n (0.7.0)
-    inherited_resources (1.6.0)
-      actionpack (>= 3.2, < 5)
-      has_scope (~> 0.6.0.rc)
-      railties (>= 3.2, < 5)
-      responders
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -188,6 +162,7 @@ GEM
     mini_portile (0.7.0.rc4)
     minitest (5.8.1)
     multipart-post (2.0.0)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
@@ -196,12 +171,10 @@ GEM
       mini_portile (~> 0.7.0.rc2)
     nokogiri (1.6.7.rc2-x64-mingw32)
       mini_portile (~> 0.7.0.rc2)
-    orm_adapter (0.5.0)
-    polyamorous (1.2.0)
-      activerecord (>= 3.0)
-    pundit (1.0.1)
-      activesupport (>= 3.0.0)
     rack (1.6.4)
+    rack-pjax (0.8.0)
+      nokogiri (~> 1.5)
+      rack (~> 1.1)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -231,18 +204,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
-    ransack (1.7.0)
-      actionpack (>= 3.0)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      i18n
-      polyamorous (~> 1.2)
     redcarpet (3.3.2)
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
     ref (2.0.0)
-    request_store (1.2.0)
+    remotipart (1.2.1)
     responders (2.0.0)
       railties (>= 4.2.0.alpha, < 5)
     rspec-core (3.3.2)
@@ -262,7 +229,8 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
-    sass (3.4.18)
+    safe_yaml (1.0.4)
+    sass (3.4.19)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -311,8 +279,6 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.3)
-      rack (>= 1.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
     xpath (2.0.0)
@@ -323,17 +289,13 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  activeadmin!
   bugsnag
-  cancan
   capistrano
   capistrano-ext
   capistrano-passenger
   capistrano-rails
   capistrano-rvm
   capybara
-  devise
-  draper
   factory_girl_rails
   feedjira
   figaro
@@ -343,15 +305,14 @@ DEPENDENCIES
   letter_opener
   newrelic_rpm
   nokogiri (= 1.6.7.rc2)
-  pundit
   rails
+  rails_admin!
   redcarpet
   responders (~> 2.0)
   rspec-rails
   sidekiq
   sinatra
   slim
-  sprockets-rails
   sqlite3
   therubyracer
   tzinfo-data
