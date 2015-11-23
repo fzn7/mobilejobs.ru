@@ -44,7 +44,11 @@
         <% unless @vacancy.name.blank? %>
           <%= @vacancy.name %><br />
         <% end %>
-        <%= mail_to @vacancy.email, nil, :encode => "hex", :replace_at => "[at]" %>
+        <% if isEmail(@vacancy.email) %>
+            <%= mail_to @vacancy.email, nil, :encode => "hex", :replace_at => "[at]" %>
+        <% else %>
+            <%= @vacancy.email %>
+        <% end %>
       </address>
     </div>
      <div class="span2">

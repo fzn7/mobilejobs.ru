@@ -1,6 +1,9 @@
 require "token_generator"
 require "html_generator"
 
+require 'nokogiri'
+require 'open-uri'
+
 class Vacancy < ActiveRecord::Base
   validates :title, :presence => true
   validates :description, :presence => true
@@ -14,8 +17,10 @@ class Vacancy < ActiveRecord::Base
   end
 
   before_save do |vacancy|
-    vacancy.excerpt_html     = HtmlGenerator.render extract_excerpt(vacancy.description)
-    vacancy.description_html = HtmlGenerator.render vacancy.description
+    if vacancy.description
+      vacancy.excerpt_html     = HtmlGenerator.render Vacancy.extract_excerpt(vacancy.description)
+      vacancy.description_html = HtmlGenerator.render vacancy.description
+    end
   end
 
   scope :approved, lambda { where("approved_at IS NOT NULL") }
@@ -44,7 +49,7 @@ class Vacancy < ActiveRecord::Base
   protected
 
   # Take the first three parts of text
-  def extract_excerpt(text, divider = "\r\n\r\n")
+  def self.extract_excerpt(text, divider = "\r\n\r\n")
     text.lines(divider).to_a.each(&:strip!).reject(&:blank?).take(3).join(divider)
   end
 
@@ -55,20 +60,65 @@ class Vacancy < ActiveRecord::Base
 
       skip_callback :create, :save
 
+      doc = Nokogiri::HTML(open(entry.url))
+
+      begin
+        location = doc.at_css('span.location').text #address
+      rescue Exception => error
+        puts "location #{error} #{entry.url}"
+      end
+
+      begin
+        email = doc.at_css('div.emails > div > a').text #email
+      rescue Exception => error
+        puts "email #{error} #{entry.url}"
+      end
+
+      if email.nil?
+        begin
+          email = doc.at_css('div.contacts').text
+        rescue Exception => error
+          puts "contacts #{error} #{entry.url}"
+          puts "skip #{entry.url}"
+          next
+        end
+      end
+
+      begin
+        company_site = doc.at_css('div.company_site > a').attributes['href'].to_s
+      rescue Exception => error
+        puts "company_site #{error} #{entry.url}"
+      end
+
+      begin
+        remote = doc.at_css('span.ready_to_remote').text #remote?
+      rescue Exception => error
+        puts "remote #{error} #{entry.url}"
+      end
+
+      begin
+        descr = doc.css('div.vacancy_description').first.children.to_s
+      rescue Exception => error
+        puts "descr #{error} #{entry.url}"
+      end
+
       v = Vacancy.new(
-                      :entry_id => "#{feed.id} #{entry.id}",
-                      :title => entry.title.sanitize,
-                      :description => entry.summary,
-                      :company =>  entry.author,
-                      #:url => entry.url,
-                      #:name => '',
-                      :location => 'Undefined',
-                      :expire_at => entry.published + 2.weeks,
-                      :approved_at => entry.published,
-                      :created_at => entry.published,
-                      :admin_token => TokenGenerator.generate_token,
-                      :excerpt_html => HtmlGenerator.render(entry.summary),
-                      )
+          :entry_id => "#{feed.id} #{entry.id}",
+          :title => entry.title.sanitize,
+          :description_html => descr,
+          :company =>  entry.author,
+          :url => company_site,
+          :email => email,
+          #:url => entry.url,
+          #:name => '',
+          :location => "#{location}#{remote}",
+          :expire_at => entry.published + 2.weeks,
+          :approved_at => entry.published,
+          :created_at => entry.published,
+          :admin_token => TokenGenerator.generate_token,
+          :excerpt_html => HtmlGenerator.render(Vacancy.extract_excerpt(entry.summary)),
+      )
+
       v.save(validate: false)
     end
   end
