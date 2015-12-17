@@ -47,7 +47,7 @@
         <% if isEmail(@vacancy.email) %>
             <%= mail_to @vacancy.email, nil, :encode => "hex", :replace_at => "[at]" %>
         <% else %>
-            <%= @vacancy.email %>
+            <%= link_to @vacancy.company, @vacancy.email, :rel => 'nofollow' %>
         <% end %>
       </address>
     </div>

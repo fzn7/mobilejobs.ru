@@ -43,6 +43,7 @@ class Vacancy < ActiveRecord::Base
 
   def self.update_from_feed(feed)
     feed_data = Feedjira::Feed.fetch_and_parse(feed.url)
+    puts "Update from url #{feed.url}"
     eval "add_vacancies_#{feed.title} feed_data.entries, feed"
   end
 
@@ -60,7 +61,15 @@ class Vacancy < ActiveRecord::Base
 
       skip_callback :create, :save
 
-      doc = Nokogiri::HTML(open(entry.url))
+      begin
+        doc = Nokogiri::HTML(open(entry.url))
+      rescue OpenURI::HTTPError => e
+        if e.message == '404 Not Found'
+          break
+        else
+          raise e
+        end
+      end
 
       begin
         location = doc.at_css('span.location').text #address
@@ -68,21 +77,8 @@ class Vacancy < ActiveRecord::Base
         puts "location #{error} #{entry.url}"
       end
 
-      begin
-        email = doc.at_css('div.emails > div > a').text #email
-      rescue Exception => error
-        puts "email #{error} #{entry.url}"
-      end
-
-      if email.nil?
-        begin
-          email = doc.at_css('div.contacts').text
-        rescue Exception => error
-          puts "contacts #{error} #{entry.url}"
-          puts "skip #{entry.url}"
-          next
-        end
-      end
+      #Закрыт доступ к отклику по email
+      email = entry.url
 
       begin
         company_site = doc.at_css('div.company_site > a').attributes['href'].to_s
