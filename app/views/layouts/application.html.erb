@@ -51,15 +51,15 @@
     </div>
   </div>
   <% if current_page?(root_url) %>
-      <hr/>
-      <div class="row content-section">
+      <!-- <hr/>
+     <div class="row content-section">
         <div class="span2 sidebar">
           <h1>Лента бирж фриланса</h1>
         </div>
         <div class="span8 offset2">
           <%= render "entries/index", entries: Entry.all_sorted.page(params[:page]) %>
         </div>
-      </div>
+      </div>-->
   <% end %>
   <footer class="row footer">
     <div class="span2">
