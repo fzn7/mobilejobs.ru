@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'bugsnag'
+#gem 'bugsnag'
 gem 'figaro'
 gem 'jquery-rails'
 gem 'kaminari'
