@@ -47,7 +47,7 @@ ru:
         button: "Удалить"
         confirmation: "Подтверждаем удаление вакансии?"
       expiration_notice: "Это архивная вакансия. Срок ее размещения истек %{expire_at}"
-      expired_at: "Вакансия размещена до: <span class=\"label\">%{expired_at}</span>"
+      expired_at: "Вакансия размещена до: <span class=\"badge\">%{expired_at}</span>"
     edit:
       meta_title: "Редактирование описания вакансии ~ MobileJobs.ru"
       title: "Редактирование"
