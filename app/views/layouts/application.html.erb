@@ -97,7 +97,7 @@
   </footer>
 </div>
 
-<%= javascript_include_tag "application" %>
+<%= javascript_include_tag "application", :async => true %>
 <%= yield(:js) %>
 <% if Rails.env.production? %>
     <!-- Google.Analytics counter -->

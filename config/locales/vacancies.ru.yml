@@ -25,7 +25,7 @@ ru:
         title: "Вакансии для разработчиков iOs, Android, Windows Phone"
         description: "Публикация абсолютно бесплатна и не требует регистрации."
       add: "Добавить вакансию"
-      expired_at: "Вакансия размещена до: <span class=\"label\">%{expired_at}</span>"
+      expired_at: "Вакансия размещена до: <span class=\"badge\">%{expired_at}</span>"
     new:
       meta_title: "Новая вакансия ~ MobileJobs.ru"
       sidebar:
