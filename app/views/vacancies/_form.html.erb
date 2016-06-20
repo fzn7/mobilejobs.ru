@@ -1,12 +1,12 @@
 <fieldset>
   <legend><%= t(".description") %></legend>
-  <div class="control-group <%= "error" if form.object.errors.include?(:title) %>">
+  <div class=" <%= "error" if form.object.errors.include?(:title) %>">
     <%= form.label :title,
                    "<strong>#{t("activerecord.attributes.vacancy.title")}</strong>".html_safe,
                    class: 'control-label' %>
-    <div class="controls">
+    <div >
       <%= form.text_field :title,
-                          class: 'span6',
+                          class: 'col-lg-6 col-md-6 form-control',
                           autofocus: true,
                           placeholder: t(".placeholders.title") %>
       <% for error in form.object.errors.get(:title) %>
@@ -14,49 +14,49 @@
       <% end %>
     </div>
   </div>
-  <div class="control-group <%= "error" if form.object.errors.include?(:description) %>">
+  <div class=" <%= "error" if form.object.errors.include?(:description) %>">
     <%= form.label :description,
                    "<strong>#{t("activerecord.attributes.vacancy.description")}</strong>".html_safe,
                    class: 'control-label' %>
-    <div class="controls">
+    <div >
       <%= form.text_area :description,
                       rows: 20,
-                      class: 'span6',
+                      class: 'col-lg-6 col-md-6 form-control',
                       placeholder: t(".placeholders.description") %>
       <% for error in form.object.errors.get(:description) %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
     </div>
   </div>
-  <div class="control-group <%= "error" if form.object.errors.include?(:location) %>">
+  <div class=" <%= "error" if form.object.errors.include?(:location) %>">
     <%= form.label :location,
                    "<strong>#{t("activerecord.attributes.vacancy.location")}</strong>".html_safe,
                    class: 'control-label' %>
-    <div class="controls">
+    <div >
       <%= form.text_field :location,
-                          class: 'span6',
+                          class: 'col-lg-6 col-md-6 form-control',
                           placeholder: t(".placeholders.location") %>
       <% for error in form.object.errors.get(:location) %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
     </div>
   </div>
-  <div class="control-group <%= "error" if form.object.errors.include?(:expire_at) %>">
+  <div class=" <%= "error" if form.object.errors.include?(:expire_at) %>">
     <%= form.label :expire_at,
                    "<strong>#{t("activerecord.attributes.vacancy.expire_at")}</strong>".html_safe,
                    class: 'control-label' %>
-    <div class="controls">
+    <div >
       <label class="radio">
         <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week, id: 'vacancy_expires_in_one_week' %>
-        <span><%= t(".notes.expire_at_one_week") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week)) %></span></span>
+        <span><%= t(".notes.expire_at_one_week") %><span class="help-block">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.week)) %></span></span>
       </label>
       <label class="radio">
         <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks, id: 'vacancy_expires_in_two_weeks' %>
-        <span><%= t(".notes.expire_at_two_weeks") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks)) %></span></span>
+        <span><%= t(".notes.expire_at_two_weeks") %><span class="help-block">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 2.weeks)) %></span></span>
       </label>
       <label class="radio">
         <%= form.radio_button :expire_at, (form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month, id: 'vacancy_expires_in_one_month' %>
-        <span><%= t(".notes.expire_at_one_month") %><span class="help-inline">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month)) %></span></span>
+        <span><%= t(".notes.expire_at_one_month") %><span class="help-block">&mdash; <%= t(".notes.valid_until", :date => l((form.object.persisted? ? form.object.created_at.to_date : Date.current) + 1.month)) %></span></span>
       </label>
       <% for error in form.object.errors.get(:expire_at) %>
         <%= content_tag(:span, error, :class => "help-block") %>
@@ -66,32 +66,32 @@
 </fieldset>
 <fieldset>
   <legend><%= t(".legends.contacts") %></legend>
-  <div class="control-group <%= "error" if form.object.errors.include?(:email) %>">
+  <div class=" <%= "error" if form.object.errors.include?(:email) %>">
     <%= form.label :email,
                    "<strong>#{t("activerecord.attributes.vacancy.email")}</strong>".html_safe,
                    class: 'control-label' %>
-    <div class="controls">
-      <%= form.email_field :email, class: 'span4' %>
+    <div >
+      <%= form.email_field :email, class: 'col-lg-4 col-md-4 form-control' %>
       <% for error in form.object.errors.get(:email) %>
         <%= content_tag(:span, error, class: "help-block") %>
       <% end %>
      </div>
   </div>
-  <div class="control-group">
+  <div class="">
     <%= form.label :company, class: 'control-label' %>
-    <div class="controls"><%= form.text_field :company, class: 'span4' %></div>
+    <div ><%= form.text_field :company, class: 'col-lg-4 col-md-4 form-control' %></div>
   </div>
-  <div class="control-group">
+  <div class="">
     <%= form.label :url, class: 'control-label' %>
-    <div class="controls"><%= form.url_field :url, class: 'span4' %></div>
+    <div ><%= form.url_field :url, class: 'col-lg-4 col-md-4 form-control' %></div>
   </div>
-  <div class="control-group">
+  <div class="">
     <%= form.label :phone, class: 'control-label' %>
-    <div class="controls"><%= form.telephone_field :phone, class: 'span4' %></div>
+    <div ><%= form.telephone_field :phone, class: 'col-lg-4 col-md-4 form-control' %></div>
   </div>
-  <div class="control-group">
+  <div class="">
     <%= form.label :name, class: 'control-label' %>
-    <div class="controls"><%= form.text_field :name, class: 'span4' %></div>
+    <div ><%= form.text_field :name, class: 'col-lg-4 col-md-4 form-control' %></div>
   </div>
 </fieldset>
 <div class="form-actions">

@@ -4,12 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="description" content="<%= t(".meta_description") %>"/>
   <meta name="keywords" content="<%= t(".meta_keywords") %>"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= yield(:meta_title) %></title>
   <meta name="google-site-verification" content="mRF4-eUmJfkHyuNFPat3EiXUAEUN3C3VbWJ7_DFAjOA" />
   <%= stylesheet_link_tag "application" %>
   <%= csrf_meta_tags %>
   <%= auto_discovery_link_tag :rss,
-                              "http://feeds.feedburner.com/mobilejobsru",
+                              "http://feeds.feedburner.com/ru_mobilejobs",
                               {:title => t("layouts.application.meta_title")} %>
   <%= favicon_link_tag %>
 
@@ -40,11 +41,12 @@
       </div>
   <% end %>
   <div class="row content-section">
-    <div class="span2 sidebar">
+    <div class="sidebar col-sm-2 col-md-2">
       <div class="logo">
         <%= link_to_if !current_page?(root_url),
                        image_tag("mobile_jobs_logo.png",
-                                 :alt => t(".meta_title")),
+                                 :alt => t(".meta_title"),
+                                 :class => "img-responsive aspect"),
                        root_url %>
       </div>
       <div class="tips">
@@ -63,7 +65,7 @@
         </p>
       </div>
     </div>
-    <div class="span8 offset2">
+    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-sm-8 col-md-8">
       <%= yield %>
     </div>
   </div>
@@ -79,13 +81,13 @@
       </div>-->
   <% end %>
   <footer class="row footer">
-    <div class="span2">
+    <div class="col-sm-2 col-md-2">
       <p>
-        &copy;&nbsp;2008&mdash;2015<br/>
+        &copy;&nbsp;2008 &mdash; <%= Date.current.year %><br/>
         <%= mail_to "ilyaplotnikoff@gmail.com", "Ilya Plotnikov" %>
       </p>
     </div>
-    <nav class="span4">
+    <nav class="col-sm-4 col-md-4">
       <ul class="pull-right">
         <li><%= link_to t(".pages.about"), page_url(:about) %></li>
         <li><%= link_to t(".pages.terms"), page_url(:terms) %></li>
