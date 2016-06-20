@@ -8,7 +8,7 @@
 <% @vacancies.in_groups_of(2, false) do |group| %>
 <div class="row">
   <% for vacancy in group %>
-  <article class="col-lg-4 col-md-4">
+  <article class="col-lg-5 col-md-5">
     <h1><%= link_to vacancy.title, vacancy %></h1>
     <h3 class="muted company">
       <%= company_location_tag(vacancy) %><br/>

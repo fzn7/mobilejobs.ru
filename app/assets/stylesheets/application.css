@@ -4,6 +4,10 @@
  *= require_tree .
 */
 
+h1 {
+    font-size:  2em;
+}
+
 h3 small {
   font-size: 13px;
 }
