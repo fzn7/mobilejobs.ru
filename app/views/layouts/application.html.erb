@@ -34,7 +34,7 @@
 <body>
 <div class="container">
   <% flash.each do |key, value| %>
-      <div class="alert <%= key %> fade in">
+      <div class="alert alert-<%= key %> fade in">
         <a class="close" href="#" class="close" data-dismiss="alert">×</a>
 
         <p><%= value %></p>
@@ -46,7 +46,7 @@
         <%= link_to_if !current_page?(root_url),
                        image_tag("mobile_jobs_logo.png",
                                  :alt => t(".meta_title"),
-                                 :class => "img-responsive aspect"),
+                                 :class => "img-responsive center-block"),
                        root_url %>
       </div>
       <div class="tips">

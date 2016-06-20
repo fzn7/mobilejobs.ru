@@ -18,7 +18,7 @@ class VacanciesController < ApplicationController
     @vacancy = Vacancy.new(parameters)
 
     if @vacancy.save
-      VacancyMailer.creation_notice(@vacancy).deliver
+      VacancyMailer.creation_notice(@vacancy).deliver_now
       flash[:success] = t("vacancies.create.success")
     end
 
