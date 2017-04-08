@@ -12,7 +12,7 @@ gem 'redcarpet'
 gem 'therubyracer', :platform => :ruby
 gem 'uglifier'
 gem 'sqlite3'
-gem 'nokogiri', "=1.6.7.rc2"
+gem 'nokogiri'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'feedjira'
 gem 'sidekiq'
