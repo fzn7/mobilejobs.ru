@@ -19,6 +19,7 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'whenever'
+gem 'sitemap_generator'
 
 #Rails admin gems ------>
 gem 'rails_admin', github: 'sferik/rails_admin'

@@ -22,3 +22,7 @@ set :output, "~/mobilejobs.ru.cron.log"
 every 5.minutes do
   rake "update_data"
 end
+
+every 1.day, :at => '5:00 am' do
+  rake "-s sitemap:refresh"
+end
