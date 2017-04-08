@@ -4,4 +4,8 @@
 # User-Agent: *
 # Disallow: /
 
+User-Agent: *
+Disallow:
+Host: mobilejobs.ru
+
 Sitemap: http://mobilejobs.ru/sitemap.xml.gz
